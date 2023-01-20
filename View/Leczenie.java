@@ -1,6 +1,8 @@
 package View;
 
 import Controller.Controller;
+import Model.Action;
+import Model.Osoby.Lekarz;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -21,7 +23,7 @@ public class Leczenie implements Window {
     private JTextField fieldNazwisko;
     private JTextField fieldWiek;
     private JTextField fieldPesel;
-    private JComboBox lekarzCombo;
+    private JComboBox<Lekarz> lekarzCombo;
 
     public Leczenie() {
         anulujButton.addActionListener(new ActionListener() {
@@ -34,7 +36,7 @@ public class Leczenie implements Window {
         zapiszButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
+                Controller.leczenie(fieldPesel.getText(), (Lekarz) lekarzCombo.getSelectedItem(), frameStatic);
             }
         });
 
@@ -68,6 +70,12 @@ public class Leczenie implements Window {
                 super.windowClosing(e);
             }
         });
+
+        for (Model.Osoby.Osoba osoba : Action.getOsoby()) {
+            if (osoba instanceof Lekarz) {
+                lekarzCombo.addItem((Lekarz) osoba);
+            }
+        }
     }
 
     @Override
@@ -81,6 +89,7 @@ public class Leczenie implements Window {
         frame.setResizable(false);
         frame.setIconImage(new ImageIcon("logo.png").getImage());
         frame.setAlwaysOnTop(true);
+
 
         frame.addWindowListener(new WindowAdapter() {
             @Override

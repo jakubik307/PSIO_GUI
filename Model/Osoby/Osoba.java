@@ -32,6 +32,6 @@ public abstract class Osoba implements Serializable {
 
     @Override
     public String toString() {
-        return imie + " " + nazwisko + "\nWiek: " + wiek + " Pesel: " + pesel;
+        return imie + " " + nazwisko;
     }
 }

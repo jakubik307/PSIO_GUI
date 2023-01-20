@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Action {
     private static ArrayList<Osoba> osoby = new ArrayList<>();
 
+    @Deprecated
     public static void stanPoczatkowy() {//TODO Usunąć(działa jako metoda pomocnicza)
 
         //Wczytanie poczatkowej bazy danych w przypadku gdy nie byla ona wczesniej utworzona;
@@ -172,6 +173,32 @@ public class Action {
             if (osoba instanceof Pacjent) {
                 if (pesel == osoba.getPesel()) {
                     ((Pacjent) osoba).setCzyChory(true);
+                }
+            }
+        }
+    }
+
+    public static void leczenie(long pesel, Lekarz lekarz) {
+        Pacjent pacjent;
+
+        for (Osoba osoba : osoby) {
+            if (osoba instanceof Pacjent) {
+                if (pesel == osoba.getPesel()) {
+                    pacjent = (Pacjent) osoba;
+                    lekarz.leczPacjenta(pacjent);
+                }
+            }
+        }
+    }
+
+    public static void szczepienie(long pesel, Pielegniarka pielegniarka, String nazwa) {
+        Pacjent pacjent;
+
+        for (Osoba osoba : osoby) {
+            if (osoba instanceof Pacjent) {
+                if (pesel == osoba.getPesel()) {
+                    pacjent = (Pacjent) osoba;
+                    pielegniarka.wykonajSzczepienie(pacjent, nazwa);
                 }
             }
         }

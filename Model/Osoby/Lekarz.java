@@ -9,20 +9,10 @@ public class Lekarz extends Pracownik {
     }
 
     public void leczPacjenta(Pacjent pacjent) {
-        if (pacjent.isChory()) {
-            pacjent.setCzyChory(false);
-            System.out.println("Pacjent ozdrowial");
-        } else {
-            System.out.println("Pacjent byl juz zdrowy");
-        }
+        pacjent.setCzyChory(false);
     }
 
     public String getSpecjalizacja() {
         return specjalizacja;
-    }
-
-    @Override
-    public String toString() {
-        return "Lekarz: " + super.toString() + " Specjalizacja: " + specjalizacja;
     }
 }

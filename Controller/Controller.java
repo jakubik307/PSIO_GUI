@@ -1,6 +1,8 @@
 package Controller;
 
 import Model.Action;
+import Model.Osoby.Lekarz;
+import Model.Osoby.Pielegniarka;
 import View.MainMenu;
 import View.Window;
 
@@ -90,7 +92,7 @@ public class Controller {
 
     public static void addChoroba(String pesel, JFrame frame) {
         try {
-            if (Long.parseLong(pesel) > 0) {
+            if (Long.parseLong(pesel) < 0) {
                 JOptionPane.showMessageDialog(frame, "Sprawdź poprawność wprowadzonych danych.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
             } else {
                 Action.addChoroba(Long.parseLong(pesel));
@@ -126,6 +128,34 @@ public class Controller {
             return Action.getWiekfromPesel(p);
         } catch (NumberFormatException e) {
             return "";
+        }
+    }
+
+    public static void leczenie(String pesel, Lekarz lekarz, JFrame frame) {
+        try {
+            if (Long.parseLong(pesel) < 0) {
+                JOptionPane.showMessageDialog(frame, "Sprawdź poprawność wprowadzonych danych.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
+            } else {
+                Action.leczenie(Long.parseLong(pesel), lekarz);
+                Controller.setTable(MainMenu.getTableStatic(), currentTableState);
+                Controller.closeWindow(frame);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(frame, "Sprawdź poprawność wprowadzonych danych.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    public static void szczepienie(String pesel, Pielegniarka pielegniarka, String nazwa, JFrame frame) {
+        try {
+            if (Long.parseLong(pesel) < 0) {
+                JOptionPane.showMessageDialog(frame, "Sprawdź poprawność wprowadzonych danych.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
+            } else {
+                Action.szczepienie(Long.parseLong(pesel), pielegniarka, nazwa);
+                Controller.setTable(MainMenu.getTableStatic(), currentTableState);
+                Controller.closeWindow(frame);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(frame, "Sprawdź poprawność wprowadzonych danych.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
         }
     }
 }

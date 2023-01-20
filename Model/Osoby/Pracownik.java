@@ -24,9 +24,4 @@ public abstract class Pracownik extends Osoba {
     public void setEtat(int etat) {
         this.etat = etat;
     }
-
-    @Override
-    public String toString() {
-        return super.toString() + " \nEtat: " + etat + " \nPensja: " + pensja;
-    }
 }

@@ -36,9 +36,4 @@ public abstract class Pacjent extends Osoba {
     public void setKosztyLeczenia(int kosztyLeczenia) {
         this.kosztyLeczenia = kosztyLeczenia;
     }
-
-    @Override
-    public String toString() {
-        return "Pacjent: " + super.toString() + "\nChory: " + isChory() + "\n" + certyfikatySzczepienia + "\n" + "Koszty Leczenia: " + kosztyLeczenia;
-    }
 }

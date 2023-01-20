@@ -1,6 +1,8 @@
 package View;
 
 import Controller.Controller;
+import Model.Action;
+import Model.Osoby.Pielegniarka;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -19,7 +21,7 @@ public class Szczepienie implements Window {
     private JTextField fieldNazwisko;
     private JTextField fieldWiek;
     private JTextField fieldPesel;
-    private JComboBox pielegniarkaCombo;
+    private JComboBox<Pielegniarka> pielegniarkaCombo;
     private JButton anulujButton;
     private JButton zapiszButton;
     private JTextField fieldChoroba;
@@ -35,7 +37,7 @@ public class Szczepienie implements Window {
         zapiszButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
+                Controller.szczepienie(fieldPesel.getText(), (Pielegniarka) pielegniarkaCombo.getSelectedItem(), fieldChoroba.getText(), frameStatic);
             }
         });
 
@@ -69,6 +71,12 @@ public class Szczepienie implements Window {
                 super.windowClosing(e);
             }
         });
+
+        for (Model.Osoby.Osoba osoba : Action.getOsoby()) {
+            if (osoba instanceof Pielegniarka) {
+                pielegniarkaCombo.addItem((Pielegniarka) osoba);
+            }
+        }
     }
 
     @Override
