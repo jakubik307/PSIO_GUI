@@ -90,7 +90,6 @@ public class Leczenie implements Window {
         frame.setIconImage(new ImageIcon("logo.png").getImage());
         frame.setAlwaysOnTop(true);
 
-
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
