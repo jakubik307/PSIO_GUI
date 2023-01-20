@@ -15,7 +15,7 @@ import java.awt.event.WindowEvent;
 public class Leczenie implements Window {
     private static JFrame frameStatic = new JFrame();
 
-    private JFrame frame = new JFrame("Leczenie pacjenta");
+    private final JFrame frame = new JFrame("Leczenie pacjenta");
     private JPanel rootPanel;
     private JButton anulujButton;
     private JButton zapiszButton;

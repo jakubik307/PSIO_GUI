@@ -171,8 +171,7 @@ public class Action {
 
     public static String getSzczepienieFromPesel(long pesel) {
         for (Osoba osoba : osoby) {
-            if (pesel == osoba.getPesel() && osoba instanceof Pacjent) {
-                Pacjent pacjent = (Pacjent) osoba;
+            if (pesel == osoba.getPesel() && osoba instanceof Pacjent pacjent) {
 
                 if (pacjent.getCertyfikatySzczepienia().size() == 0) {
                     return "Brak szczepień";

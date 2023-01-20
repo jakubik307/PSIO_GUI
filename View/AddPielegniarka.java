@@ -11,7 +11,7 @@ import java.awt.event.WindowEvent;
 public class AddPielegniarka implements Window {
     private static JFrame frameStatic;
 
-    private JFrame frame = new JFrame("Dodawanie pielęgniarki");
+    private final JFrame frame = new JFrame("Dodawanie pielęgniarki");
     private JPanel rootPanel;
     private JTextField fieldImie;
     private JTextField fieldNazwisko;

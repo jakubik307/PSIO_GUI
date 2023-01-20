@@ -15,7 +15,7 @@ import java.awt.event.WindowEvent;
 public class Szczepienie implements Window {
     private static JFrame frameStatic;
 
-    private JFrame frame = new JFrame("Szczepienie pacjenta");
+    private final JFrame frame = new JFrame("Szczepienie pacjenta");
     private JPanel rootPanel;
     private JTextField fieldImie;
     private JTextField fieldNazwisko;

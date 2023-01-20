@@ -11,7 +11,7 @@ import java.awt.event.WindowEvent;
 public class ListaSzczepien implements Window {
     private static JFrame frameStatic;
 
-    private JFrame frame = new JFrame("Szczepienia pacjenta");
+    private final JFrame frame = new JFrame("Szczepienia pacjenta");
     private JPanel rootPanel;
     private JTextArea szczepieniaArea;
     private JTextField fieldImie;

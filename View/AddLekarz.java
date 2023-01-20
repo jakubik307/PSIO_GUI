@@ -11,7 +11,7 @@ import java.awt.event.WindowEvent;
 public class AddLekarz implements Window {
     private static JFrame frameStatic;
 
-    private JFrame frame = new JFrame("Dodawanie lekarza");
+    private final JFrame frame = new JFrame("Dodawanie lekarza");
     private JPanel rootPanel;
     private JTextField fieldImie;
     private JTextField fieldNazwisko;

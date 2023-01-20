@@ -39,9 +39,6 @@ public class MainMenu implements Window {
     public MainMenu() {
         tableStatic = table1;
 
-// TODO: 20/01/2023  usunac
-
-//        Model.Action.stanPoczatkowy();
         Controller.wczytajDane();
 
         //Wstawienie danych do tabeli

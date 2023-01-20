@@ -13,7 +13,7 @@ import java.awt.event.WindowEvent;
 public class AddChoroba implements Window {
     private static JFrame frameStatic;
 
-    private JFrame frame = new JFrame("Zglaszanie choroby");
+    private final JFrame frame = new JFrame("Zglaszanie choroby");
     private JPanel rootPanel;
     private JTextField fieldImie;
     private JTextField fieldNazwisko;
