@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 public class MainMenu implements Window {
     private static JTable tableStatic;
+    private static JFrame frameStatic;
 
     private JPanel rootPanel;
     private JButton wyswietlPracownikowButton;
@@ -38,7 +39,9 @@ public class MainMenu implements Window {
     public MainMenu() {
         tableStatic = table1;
 
-//       Model.Action.stanPoczatkowy();
+// TODO: 20/01/2023  usunac
+
+//        Model.Action.stanPoczatkowy();
         Controller.wczytajDane();
 
         //Wstawienie danych do tabeli
@@ -137,6 +140,7 @@ public class MainMenu implements Window {
     @Override
     public void GUI_Create() {
         JFrame frame = new JFrame("Szpital");
+        frameStatic = frame;
         frame.setContentPane(new MainMenu().rootPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -151,6 +155,7 @@ public class MainMenu implements Window {
             @Override
             public void windowClosing(WindowEvent e) {
                 Action.zapiszDane();
+                Action.exportToCSV(frameStatic);
                 super.windowClosing(e);
             }
         });

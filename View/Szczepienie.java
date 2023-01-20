@@ -58,9 +58,9 @@ public class Szczepienie implements Window {
             }
 
             private void update() {
-                fieldImie.setText(Controller.getNamefromPesel(fieldPesel.getText()));
-                fieldNazwisko.setText(Controller.getSurnamefromPesel(fieldPesel.getText()));
-                fieldWiek.setText(Controller.getWiekfromPesel(fieldPesel.getText()));
+                fieldImie.setText(Controller.getNameFromPesel(fieldPesel.getText()));
+                fieldNazwisko.setText(Controller.getSurnameFromPesel(fieldPesel.getText()));
+                fieldWiek.setText(Controller.getWiekFromPesel(fieldPesel.getText()));
             }
         });
 

@@ -6,9 +6,4 @@ public class Main {
     }
 }
 
-// TODO: 19/01/2023 fill combo boxes
 // TODO: 19/01/2023 redundant gui create code
-// TODO: 19/01/2023 leczenie
-// TODO: 19/01/2023 szczepienie
-// TODO: 19/01/2023 lista szczepien
-// TODO: 19/01/2023 wyszukiwanie

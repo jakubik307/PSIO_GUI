@@ -33,7 +33,7 @@ public class Wyszukiwanie implements Window {
         szukajButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
+                Controller.wyszukiwanie(fieldImie.getText(), fieldNazwisko.getText(), fieldWiek.getText(), fieldPesel.getText(), fieldPensja.getText(), fieldSpecjalizacja.getText(), frameStatic);
             }
         });
 

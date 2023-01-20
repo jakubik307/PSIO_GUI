@@ -29,6 +29,6 @@ public class CertyfikatSzczepienia implements Serializable {
 
     @Override
     public String toString() {
-        return "Choroba: " + name + " numerSzczepienia: " + numerSzczepienia;
+        return "choroba: " + name + "  |  numer szczepienia: " + numerSzczepienia;
     }
 }

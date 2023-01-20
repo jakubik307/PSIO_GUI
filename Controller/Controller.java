@@ -1,12 +1,12 @@
 package Controller;
 
 import Model.Action;
-import Model.Osoby.Lekarz;
-import Model.Osoby.Pielegniarka;
+import Model.Osoby.*;
 import View.MainMenu;
 import View.Window;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Controller {
     private static boolean windowOpened = false;
@@ -68,7 +68,7 @@ public class Controller {
                 JOptionPane.showMessageDialog(frame, "Sprawdź poprawność wprowadzonych danych.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
             } else {
                 Action.addPielegniarka(imie, nazwisko, Integer.parseInt(wiek), Integer.parseInt(etat), Long.parseLong(pesel));
-                Controller.setTable(MainMenu.getTableStatic(), 2);
+                Controller.setTable(MainMenu.getTableStatic(), 1);
                 Controller.closeWindow(frame);
             }
         } catch (NumberFormatException e) {
@@ -82,7 +82,7 @@ public class Controller {
                 JOptionPane.showMessageDialog(frame, "Sprawdź poprawność wprowadzonych danych.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
             } else {
                 Action.addPacjent(imie, nazwisko, Integer.parseInt(wiek), Long.parseLong(pesel));
-                Controller.setTable(MainMenu.getTableStatic(), 1);
+                Controller.setTable(MainMenu.getTableStatic(), 2);
                 Controller.closeWindow(frame);
             }
         } catch (NumberFormatException e) {
@@ -104,7 +104,7 @@ public class Controller {
         }
     }
 
-    public static String getNamefromPesel(String pesel) {
+    public static String getNameFromPesel(String pesel) {
         try {
             long p = Long.parseLong(pesel);
             return Action.getNameFromPesel(p);
@@ -113,7 +113,7 @@ public class Controller {
         }
     }
 
-    public static String getSurnamefromPesel(String pesel) {
+    public static String getSurnameFromPesel(String pesel) {
         try {
             long p = Long.parseLong(pesel);
             return Action.getSurnameFromPesel(p);
@@ -122,10 +122,19 @@ public class Controller {
         }
     }
 
-    public static String getWiekfromPesel(String pesel) {
+    public static String getWiekFromPesel(String pesel) {
         try {
             long p = Long.parseLong(pesel);
-            return Action.getWiekfromPesel(p);
+            return Action.getWiekFromPesel(p);
+        } catch (NumberFormatException e) {
+            return "";
+        }
+    }
+
+    public static String getSzczepieniaFromPesel(String pesel) {
+        try {
+            long p = Long.parseLong(pesel);
+            return Action.getSzczepienieFromPesel(p);
         } catch (NumberFormatException e) {
             return "";
         }
@@ -152,6 +161,62 @@ public class Controller {
             } else {
                 Action.szczepienie(Long.parseLong(pesel), pielegniarka, nazwa);
                 Controller.setTable(MainMenu.getTableStatic(), currentTableState);
+                Controller.closeWindow(frame);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(frame, "Sprawdź poprawność wprowadzonych danych.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    public static void wyszukiwanie(String imie, String nazwisko, String wiek, String pesel, String pensjaMin, String specjalizacja, JFrame frame) {
+        try {
+            if (!pesel.equals("") && (Long.parseLong(pesel) <= 0) || (!wiek.equals("") && Integer.parseInt(wiek) <= 0) || (!pensjaMin.equals("") && Integer.parseInt(pensjaMin) <= 0)) {
+                JOptionPane.showMessageDialog(frame, "Sprawdź poprawność wprowadzonych danych.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
+            } else {
+                long peselLong;
+                int wiekInt;
+                int pensjaInt;
+
+                if (pesel.equals("")) {
+                    peselLong = 0L;
+                } else {
+                    peselLong = Long.parseLong(pesel);
+                }
+
+                if (wiek.equals("")) {
+                    wiekInt = 0;
+                } else {
+                    wiekInt = Integer.parseInt(wiek);
+                }
+
+                if (pensjaMin.equals("")) {
+                    pensjaInt = 0;
+                } else {
+                    pensjaInt = Integer.parseInt(pensjaMin);
+                }
+
+                ArrayList<Osoba> osoby = Action.wyszukiwanie(imie, nazwisko, wiekInt, peselLong, pensjaInt, specjalizacja);
+                boolean pacjentFlag = false;
+                boolean pracownikFlag = false;
+
+                for (Osoba osoba : osoby) {
+                    if (osoba instanceof Pacjent) {
+                        pacjentFlag = true;
+                    } else if (osoba instanceof Pracownik) {
+                        pracownikFlag = true;
+                    }
+                }
+
+                if (pacjentFlag && pracownikFlag) {
+                    MainMenu.getTableStatic().setModel(new MainMenu.OsobaTableModel(osoby));
+                } else if (pacjentFlag) {
+                    MainMenu.getTableStatic().setModel(new MainMenu.PacjentTableModel(osoby));
+                } else if (pracownikFlag) {
+                    MainMenu.getTableStatic().setModel(new MainMenu.PracownikTableModel(osoby));
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Nie znaleziono pasujących danych.", "Brak wyników", JOptionPane.INFORMATION_MESSAGE);
+                }
+
                 Controller.closeWindow(frame);
             }
         } catch (NumberFormatException e) {

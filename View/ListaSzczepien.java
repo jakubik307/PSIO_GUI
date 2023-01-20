@@ -13,7 +13,7 @@ public class ListaSzczepien implements Window {
 
     private JFrame frame = new JFrame("Szczepienia pacjenta");
     private JPanel rootPanel;
-    private JTextArea textArea1;
+    private JTextArea szczepieniaArea;
     private JTextField fieldImie;
     private JTextField fieldNazwisko;
     private JTextField fieldWiek;
@@ -37,9 +37,10 @@ public class ListaSzczepien implements Window {
             }
 
             private void update() {
-                fieldImie.setText(Controller.getNamefromPesel(fieldPesel.getText()));
-                fieldNazwisko.setText(Controller.getSurnamefromPesel(fieldPesel.getText()));
-                fieldWiek.setText(Controller.getWiekfromPesel(fieldPesel.getText()));
+                fieldImie.setText(Controller.getNameFromPesel(fieldPesel.getText()));
+                fieldNazwisko.setText(Controller.getSurnameFromPesel(fieldPesel.getText()));
+                fieldWiek.setText(Controller.getWiekFromPesel(fieldPesel.getText()));
+                szczepieniaArea.setText(Controller.getSzczepieniaFromPesel(fieldPesel.getText()));
             }
         });
 

@@ -8,6 +8,7 @@ import StrategiaPensja.Pensja;
 import StrategiaPensja.PensjaLekarz;
 import StrategiaPensja.PensjaPielegniarka;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -159,10 +160,30 @@ public class Action {
         return "";
     }
 
-    public static String getWiekfromPesel(long pesel) {
+    public static String getWiekFromPesel(long pesel) {
         for (Osoba osoba : osoby) {
             if (pesel == osoba.getPesel()) {
                 return String.valueOf(osoba.getWiek());
+            }
+        }
+        return "";
+    }
+
+    public static String getSzczepienieFromPesel(long pesel) {
+        for (Osoba osoba : osoby) {
+            if (pesel == osoba.getPesel() && osoba instanceof Pacjent) {
+                Pacjent pacjent = (Pacjent) osoba;
+
+                if (pacjent.getCertyfikatySzczepienia().size() == 0) {
+                    return "Brak szczepień";
+                }
+
+                StringBuilder stringBuilder = new StringBuilder();
+                for (CertyfikatSzczepienia certyfikat : pacjent.getCertyfikatySzczepienia()) {
+                    stringBuilder.append(certyfikat).append("\n");
+                }
+
+                return stringBuilder.toString();
             }
         }
         return "";
@@ -201,6 +222,35 @@ public class Action {
                     pielegniarka.wykonajSzczepienie(pacjent, nazwa);
                 }
             }
+        }
+    }
+
+    public static ArrayList<Osoba> wyszukiwanie(String imie, String nazwisko, int wiek, long pesel, int pensjaMin, String specjalizacja) {
+        ArrayList<Osoba> record = new ArrayList<>();
+
+        for (Osoba osoba : osoby) {
+            if (osoba.getImie().contains(imie) && osoba.getNazwisko().contains(nazwisko) && ((wiek == 0) || (osoba.getWiek() == wiek)) && ((pesel == 0) || (osoba.getPesel() == pesel)) && (pensjaMin == 0 || (((osoba instanceof Pracownik)) && (((Pracownik) osoba).getPensja() >= pensjaMin))) && (specjalizacja.equals("") || (((osoba instanceof Lekarz)) && (((Lekarz) osoba).getSpecjalizacja().contains(specjalizacja))))) {
+                record.add(osoba);
+            }
+        }
+
+        return record;
+    }
+
+    public static void exportToCSV(JFrame frame) {
+        try (FileWriter fileWriter = new FileWriter("osoby.csv")) {
+            for (Osoba osoba : osoby) {
+                if (osoba instanceof Pacjent) {
+                    fileWriter.write("pacjent," + osoba.getImie() + "," + osoba.getNazwisko() + "," + osoba.getWiek() + "," + osoba.getPesel() + "," + ((Pacjent) osoba).isChory() + "," + ((Pacjent) osoba).getKosztyLeczenia());
+                } else if (osoba instanceof Pielegniarka) {
+                    fileWriter.write("pielegniarka," + osoba.getImie() + "," + osoba.getNazwisko() + "," + osoba.getWiek() + "," + osoba.getPesel() + "," + ((Pielegniarka) osoba).getPensja());
+                } else if (osoba instanceof Lekarz) {
+                    fileWriter.write("lekarz," + osoba.getImie() + "," + osoba.getNazwisko() + "," + osoba.getWiek() + "," + osoba.getPesel() + "," + ((Lekarz) osoba).getPensja() + "," + ((Lekarz) osoba).getSpecjalizacja());
+                }
+                fileWriter.write("\n");
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(frame, "Wystąpił nieoczekiwany błąd w eksportowaniu plików", "Błąd", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
