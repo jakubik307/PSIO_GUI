@@ -53,6 +53,12 @@ public class Controller {
             if (imie.equals("") || nazwisko.equals("") || (Integer.parseInt(wiek) < 0 || Long.parseLong(pesel) < 0) || Integer.parseInt(etat) < 0 || specjalizacja.equals("")) {
                 JOptionPane.showMessageDialog(frame, "Sprawdź poprawność wprowadzonych danych.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
             } else {
+                for (Osoba osoba : Action.getOsoby()) {
+                    if (Long.parseLong(pesel) == osoba.getPesel()) {
+                        JOptionPane.showMessageDialog(frame, "Osoba o podanym peselu już istnieje.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                }
                 Action.addLekarz(imie, nazwisko, specjalizacja, Integer.parseInt(wiek), Integer.parseInt(etat), Long.parseLong(pesel));
                 Controller.setTable(MainMenu.getTableStatic(), 1);
                 Controller.closeWindow(frame);
@@ -67,6 +73,12 @@ public class Controller {
             if (imie.equals("") || nazwisko.equals("") || (Integer.parseInt(wiek) < 0 || Long.parseLong(pesel) < 0) || Integer.parseInt(etat) < 0) {
                 JOptionPane.showMessageDialog(frame, "Sprawdź poprawność wprowadzonych danych.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
             } else {
+                for (Osoba osoba : Action.getOsoby()) {
+                    if (Long.parseLong(pesel) == osoba.getPesel()) {
+                        JOptionPane.showMessageDialog(frame, "Osoba o podanym peselu już istnieje.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                }
                 Action.addPielegniarka(imie, nazwisko, Integer.parseInt(wiek), Integer.parseInt(etat), Long.parseLong(pesel));
                 Controller.setTable(MainMenu.getTableStatic(), 1);
                 Controller.closeWindow(frame);
@@ -81,6 +93,12 @@ public class Controller {
             if (imie.equals("") || nazwisko.equals("") || (Integer.parseInt(wiek) < 0 || Long.parseLong(pesel) < 0)) {
                 JOptionPane.showMessageDialog(frame, "Sprawdź poprawność wprowadzonych danych.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
             } else {
+                for (Osoba osoba : Action.getOsoby()) {
+                    if (Long.parseLong(pesel) == osoba.getPesel()) {
+                        JOptionPane.showMessageDialog(frame, "Osoba o podanym peselu już istnieje.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                }
                 Action.addPacjent(imie, nazwisko, Integer.parseInt(wiek), Long.parseLong(pesel));
                 Controller.setTable(MainMenu.getTableStatic(), 2);
                 Controller.closeWindow(frame);
@@ -95,9 +113,15 @@ public class Controller {
             if (Long.parseLong(pesel) < 0) {
                 JOptionPane.showMessageDialog(frame, "Sprawdź poprawność wprowadzonych danych.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
             } else {
-                Action.addChoroba(Long.parseLong(pesel));
-                Controller.setTable(MainMenu.getTableStatic(), currentTableState);
-                Controller.closeWindow(frame);
+                for (Osoba osoba : Action.getOsoby()) {
+                    if (Long.parseLong(pesel) == osoba.getPesel()) {
+                        Action.addChoroba(Long.parseLong(pesel));
+                        Controller.setTable(MainMenu.getTableStatic(), currentTableState);
+                        Controller.closeWindow(frame);
+                        return;
+                    }
+                }
+                JOptionPane.showMessageDialog(frame, "Osoba o podanym peselu nie istnieje.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(frame, "Sprawdź poprawność wprowadzonych danych.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
@@ -145,9 +169,15 @@ public class Controller {
             if (Long.parseLong(pesel) < 0) {
                 JOptionPane.showMessageDialog(frame, "Sprawdź poprawność wprowadzonych danych.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
             } else {
-                Action.leczenie(Long.parseLong(pesel), lekarz);
-                Controller.setTable(MainMenu.getTableStatic(), currentTableState);
-                Controller.closeWindow(frame);
+                for (Osoba osoba : Action.getOsoby()) {
+                    if (Long.parseLong(pesel) == osoba.getPesel()) {
+                        Action.leczenie(Long.parseLong(pesel), lekarz);
+                        Controller.setTable(MainMenu.getTableStatic(), currentTableState);
+                        Controller.closeWindow(frame);
+                        return;
+                    }
+                }
+                JOptionPane.showMessageDialog(frame, "Osoba o podanym peselu nie istnieje.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(frame, "Sprawdź poprawność wprowadzonych danych.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
@@ -159,9 +189,15 @@ public class Controller {
             if (Long.parseLong(pesel) < 0) {
                 JOptionPane.showMessageDialog(frame, "Sprawdź poprawność wprowadzonych danych.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
             } else {
-                Action.szczepienie(Long.parseLong(pesel), pielegniarka, nazwa);
-                Controller.setTable(MainMenu.getTableStatic(), currentTableState);
-                Controller.closeWindow(frame);
+                for (Osoba osoba : Action.getOsoby()) {
+                    if (Long.parseLong(pesel) == osoba.getPesel()) {
+                        Action.szczepienie(Long.parseLong(pesel), pielegniarka, nazwa);
+                        Controller.setTable(MainMenu.getTableStatic(), currentTableState);
+                        Controller.closeWindow(frame);
+                        return;
+                    }
+                }
+                JOptionPane.showMessageDialog(frame, "Osoba o podanym peselu nie istnieje.", "Błędne dane", JOptionPane.WARNING_MESSAGE);
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(frame, "Sprawdź poprawność wprowadzonych danych.", "Błędne dane", JOptionPane.WARNING_MESSAGE);

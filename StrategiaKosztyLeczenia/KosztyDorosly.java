@@ -3,7 +3,7 @@ package StrategiaKosztyLeczenia;
 public class KosztyDorosly implements Koszty {
     @Override
     public int liczenieKosztowLeczenia(int wiek) {
-        int koszty = (1000) * (120 - wiek) / 100; //Koszt leczenia doroslego obliczamy na podstawie jego wieku
+        int koszty = (10) * (120 - wiek); //Koszt leczenia doroslego obliczamy na podstawie jego wieku
 
         try {
             if (koszty < 0) {
