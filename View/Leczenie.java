@@ -26,19 +26,9 @@ public class Leczenie implements Window {
     private JComboBox<Lekarz> lekarzCombo;
 
     public Leczenie() {
-        anulujButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.closeWindow(frameStatic);
-            }
-        });
+        anulujButton.addActionListener(e -> Controller.closeWindow(frameStatic));
 
-        zapiszButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.leczenie(fieldPesel.getText(), (Lekarz) lekarzCombo.getSelectedItem(), frameStatic);
-            }
-        });
+        zapiszButton.addActionListener(e -> Controller.leczenie(fieldPesel.getText(), (Lekarz) lekarzCombo.getSelectedItem(), frameStatic));
 
         fieldPesel.getDocument().addDocumentListener(new DocumentListener() {
             @Override

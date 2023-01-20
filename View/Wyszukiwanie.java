@@ -23,19 +23,9 @@ public class Wyszukiwanie implements Window {
     private JButton szukajButton;
 
     public Wyszukiwanie() {
-        anulujButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.closeWindow(frameStatic);
-            }
-        });
+        anulujButton.addActionListener(e -> Controller.closeWindow(frameStatic));
 
-        szukajButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.wyszukiwanie(fieldImie.getText(), fieldNazwisko.getText(), fieldWiek.getText(), fieldPesel.getText(), fieldPensja.getText(), fieldSpecjalizacja.getText(), frameStatic);
-            }
-        });
+        szukajButton.addActionListener(e -> Controller.wyszukiwanie(fieldImie.getText(), fieldNazwisko.getText(), fieldWiek.getText(), fieldPesel.getText(), fieldPensja.getText(), fieldSpecjalizacja.getText(), frameStatic));
 
         frame.addWindowListener(new WindowAdapter() {
             @Override

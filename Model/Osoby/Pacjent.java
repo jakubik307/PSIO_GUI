@@ -3,7 +3,7 @@ package Model.Osoby;
 import java.util.ArrayList;
 
 public abstract class Pacjent extends Osoba {
-    private ArrayList<CertyfikatSzczepienia> certyfikatySzczepienia;
+    private final ArrayList<CertyfikatSzczepienia> certyfikatySzczepienia;
     private boolean czyChory;
     private int kosztyLeczenia;
 
@@ -15,10 +15,6 @@ public abstract class Pacjent extends Osoba {
 
     public ArrayList<CertyfikatSzczepienia> getCertyfikatySzczepienia() {
         return certyfikatySzczepienia;
-    }
-
-    public void setCertyfikatySzczepienia(ArrayList<CertyfikatSzczepienia> certyfikatySzczepienia) {
-        this.certyfikatySzczepienia = certyfikatySzczepienia;
     }
 
     public boolean isChory() {

@@ -16,7 +16,7 @@ public class KosztyDorosly implements Koszty {
         }
     }
 
-    public class UjemneKosztyException extends Exception {
+    public static class UjemneKosztyException extends Exception {
         public UjemneKosztyException(String errorMessage) {
             super(errorMessage);
         }

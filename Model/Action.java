@@ -47,6 +47,7 @@ public class Action {
         osoby.add(dziecko1);
     }
 
+    @SuppressWarnings("unchecked")
     public static void wczytajDane() {
         try {
             ObjectInputStream is = new ObjectInputStream(new FileInputStream("bazadanych.ser"));

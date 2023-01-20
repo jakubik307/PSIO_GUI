@@ -27,19 +27,9 @@ public class Szczepienie implements Window {
     private JTextField fieldChoroba;
 
     public Szczepienie() {
-        anulujButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.closeWindow(frameStatic);
-            }
-        });
+        anulujButton.addActionListener(e -> Controller.closeWindow(frameStatic));
 
-        zapiszButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.szczepienie(fieldPesel.getText(), (Pielegniarka) pielegniarkaCombo.getSelectedItem(), fieldChoroba.getText(), frameStatic);
-            }
-        });
+        zapiszButton.addActionListener(e -> Controller.szczepienie(fieldPesel.getText(), (Pielegniarka) pielegniarkaCombo.getSelectedItem(), fieldChoroba.getText(), frameStatic));
 
         fieldPesel.getDocument().addDocumentListener(new DocumentListener() {
             @Override

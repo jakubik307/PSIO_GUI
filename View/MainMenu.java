@@ -10,12 +10,11 @@ import Model.Osoby.Pracownik;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
+@SuppressWarnings("unused")
 public class MainMenu implements Window {
     private static JTable tableStatic;
     private static JFrame frameStatic;
@@ -52,82 +51,27 @@ public class MainMenu implements Window {
         table1.setDefaultRenderer(Long.class, centerRenderer);
 
         //Action listeners
-        wyswietlPracownikowButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.setTable(table1, 1);
-            }
-        });
+        wyswietlPracownikowButton.addActionListener(e -> Controller.setTable(table1, 1));
 
-        wyswietlPacjentowButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.setTable(table1, 2);
-            }
-        });
+        wyswietlPacjentowButton.addActionListener(e -> Controller.setTable(table1, 2));
 
-        wyswietlWszystkichButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.setTable(table1, 3);
-            }
-        });
+        wyswietlWszystkichButton.addActionListener(e -> Controller.setTable(table1, 3));
 
-        dodajLekarzaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.openWindow(new AddLekarz());
-            }
-        });
+        dodajLekarzaButton.addActionListener(e -> Controller.openWindow(new AddLekarz()));
 
-        dodajPielegniarkeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.openWindow(new AddPielegniarka());
-            }
-        });
+        dodajPielegniarkeButton.addActionListener(e -> Controller.openWindow(new AddPielegniarka()));
 
-        dodajPacjentaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.openWindow(new AddPacjent());
-            }
-        });
+        dodajPacjentaButton.addActionListener(e -> Controller.openWindow(new AddPacjent()));
 
-        zglosChorobeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.openWindow(new AddChoroba());
-            }
-        });
+        zglosChorobeButton.addActionListener(e -> Controller.openWindow(new AddChoroba()));
 
-        leczeniePacjentaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.openWindow(new Leczenie());
-            }
-        });
+        leczeniePacjentaButton.addActionListener(e -> Controller.openWindow(new Leczenie()));
 
-        szczepieniePacjentaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.openWindow(new Szczepienie());
-            }
-        });
+        szczepieniePacjentaButton.addActionListener(e -> Controller.openWindow(new Szczepienie()));
 
-        wyswietlSzczepieniaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.openWindow(new ListaSzczepien());
-            }
-        });
+        wyswietlSzczepieniaButton.addActionListener(e -> Controller.openWindow(new ListaSzczepien()));
 
-        wyszukiwanieButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.openWindow(new Wyszukiwanie());
-            }
-        });
+        wyszukiwanieButton.addActionListener(e -> Controller.openWindow(new Wyszukiwanie()));
     }
 
     public static JTable getTableStatic() {
@@ -163,13 +107,9 @@ public class MainMenu implements Window {
 
         private final String[] COLUMNS = {"Typ", "Imie", "Nazwisko", "Pesel", "Wiek"};
 
-        private ArrayList<Osoba> osoby;
+        private final ArrayList<Osoba> osoby;
 
         public OsobaTableModel(ArrayList<Osoba> osoby) {
-            this.osoby = osoby;
-        }
-
-        public void setOsoby(ArrayList<Osoba> osoby) {
             this.osoby = osoby;
         }
 
@@ -214,13 +154,9 @@ public class MainMenu implements Window {
 
         private final String[] COLUMNS = {"Typ", "Imie", "Nazwisko", "Pesel", "Wiek", "Stan zdrowia", "Koszty leczenia"};
 
-        private ArrayList<Osoba> osoby;
+        private final ArrayList<Osoba> osoby;
 
         public PacjentTableModel(ArrayList<Osoba> osoby) {
-            this.osoby = osoby;
-        }
-
-        public void setOsoby(ArrayList<Osoba> osoby) {
             this.osoby = osoby;
         }
 
@@ -286,14 +222,10 @@ public class MainMenu implements Window {
     public static class PracownikTableModel extends AbstractTableModel {
 
         private final String[] COLUMNS = {"Typ", "Imie", "Nazwisko", "Pesel", "Wiek", "Pensja", "Specjalizacja"};
-        private ArrayList<Osoba> osoby;
+        private final ArrayList<Osoba> osoby;
 
 
         public PracownikTableModel(ArrayList<Osoba> osoby) {
-            this.osoby = osoby;
-        }
-
-        public void setOsoby(ArrayList<Osoba> osoby) {
             this.osoby = osoby;
         }
 

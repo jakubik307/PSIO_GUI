@@ -23,19 +23,9 @@ public class AddChoroba implements Window {
     private JButton zapiszButton;
 
     public AddChoroba() {
-        anulujButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.closeWindow(frameStatic);
-            }
-        });
+        anulujButton.addActionListener(e -> Controller.closeWindow(frameStatic));
 
-        zapiszButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.addChoroba(fieldPesel.getText(), frameStatic);
-            }
-        });
+        zapiszButton.addActionListener(e -> Controller.addChoroba(fieldPesel.getText(), frameStatic));
 
         fieldPesel.getDocument().addDocumentListener(new DocumentListener() {
             @Override

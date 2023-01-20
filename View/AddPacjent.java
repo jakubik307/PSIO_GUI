@@ -21,19 +21,9 @@ public class AddPacjent implements Window{
     private JButton zapiszButton;
 
     public AddPacjent() {
-        anulujButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.closeWindow(frameStatic);
-            }
-        });
+        anulujButton.addActionListener(e -> Controller.closeWindow(frameStatic));
 
-        zapiszButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.addPacjent(fieldImie.getText(), fieldNazwisko.getText(), fieldWiek.getText(), fieldPesel.getText(), frameStatic);
-            }
-        });
+        zapiszButton.addActionListener(e -> Controller.addPacjent(fieldImie.getText(), fieldNazwisko.getText(), fieldWiek.getText(), fieldPesel.getText(), frameStatic));
 
         frame.addWindowListener(new WindowAdapter() {
             @Override

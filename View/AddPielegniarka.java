@@ -22,19 +22,9 @@ public class AddPielegniarka implements Window {
     private JButton zapiszButton;
 
     public AddPielegniarka() {
-        anulujButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.closeWindow(frameStatic);
-            }
-        });
+        anulujButton.addActionListener(e -> Controller.closeWindow(frameStatic));
 
-        zapiszButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Controller.addPielegniarka(fieldImie.getText(), fieldNazwisko.getText(), fieldWiek.getText(), fieldPesel.getText(), fieldEtat.getText(), frameStatic);
-            }
-        });
+        zapiszButton.addActionListener(e -> Controller.addPielegniarka(fieldImie.getText(), fieldNazwisko.getText(), fieldWiek.getText(), fieldPesel.getText(), fieldEtat.getText(), frameStatic));
 
         frame.addWindowListener(new WindowAdapter() {
             @Override

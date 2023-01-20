@@ -1,7 +1,7 @@
 package Model.Osoby;
 
 public abstract class Pracownik extends Osoba {
-    private int etat;
+    private final int etat;
     private int pensja;
 
     public Pracownik(String imie, String nazwisko, long pesel, int wiek, int etat) {
@@ -21,7 +21,4 @@ public abstract class Pracownik extends Osoba {
         return etat;
     }
 
-    public void setEtat(int etat) {
-        this.etat = etat;
-    }
 }
