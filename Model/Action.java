@@ -229,7 +229,7 @@ public class Action {
         ArrayList<Osoba> record = new ArrayList<>();
 
         for (Osoba osoba : osoby) {
-            if (osoba.getImie().contains(imie) && osoba.getNazwisko().contains(nazwisko) && ((wiek == 0) || (osoba.getWiek() == wiek)) && ((pesel == 0) || (osoba.getPesel() == pesel)) && (pensjaMin == 0 || (((osoba instanceof Pracownik)) && (((Pracownik) osoba).getPensja() >= pensjaMin))) && (specjalizacja.equals("") || (((osoba instanceof Lekarz)) && (((Lekarz) osoba).getSpecjalizacja().contains(specjalizacja))))) {
+            if (osoba.getImie().toLowerCase().contains(imie.toLowerCase()) && osoba.getNazwisko().toLowerCase().contains(nazwisko.toLowerCase()) && ((wiek == 0) || (osoba.getWiek() == wiek)) && ((pesel == 0) || (osoba.getPesel() == pesel)) && (pensjaMin == 0 || (((osoba instanceof Pracownik)) && (((Pracownik) osoba).getPensja() >= pensjaMin))) && (specjalizacja.equals("") || (((osoba instanceof Lekarz)) && (((Lekarz) osoba).getSpecjalizacja().toLowerCase().contains(specjalizacja.toLowerCase()))))) {
                 record.add(osoba);
             }
         }
