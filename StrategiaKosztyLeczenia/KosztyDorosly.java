@@ -12,7 +12,7 @@ public class KosztyDorosly implements Koszty {
                 return koszty;
             }
         } catch (UjemneKosztyException e) {
-            return 0;
+            return 0; //Dla starszej osoby koszt leczenia darmowy
         }
     }
 

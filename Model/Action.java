@@ -16,7 +16,7 @@ public class Action {
     private static ArrayList<Osoba> osoby = new ArrayList<>();
 
     @Deprecated
-    public static void stanPoczatkowy() {//TODO Usunąć(działa jako metoda pomocnicza)
+    public static void stanPoczatkowy() {
 
         //Wczytanie poczatkowej bazy danych w przypadku gdy nie byla ona wczesniej utworzona;
         Koszty koszty = new KosztyDorosly();

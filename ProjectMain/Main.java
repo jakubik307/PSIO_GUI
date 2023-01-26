@@ -7,5 +7,3 @@ public class Main {
         // TODO: 20/01/2023  
     }
 }
-
-// TODO: 19/01/2023 redundant gui create code
