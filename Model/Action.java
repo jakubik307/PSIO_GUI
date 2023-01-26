@@ -22,22 +22,22 @@ public class Action {
         Koszty koszty = new KosztyDorosly();
         Pensja pensja = new PensjaLekarz();
 
-        Lekarz chirurg = new Lekarz("Jan", "Kowalski", 99092295748L, 31, 40, "chirurg");
+        Lekarz chirurg = new Lekarz("Jan", "Kowalski", 92092295748L, 31, 40, "chirurg");
         chirurg.setPensja(pensja.liczeniePensji(chirurg.getEtat()));
-        Lekarz ogolny = new Lekarz("Piotr", "Nowak", 68032832183L, 25, 50, "ogolny");
+        Lekarz ogolny = new Lekarz("Piotr", "Nowak", 98032832183L, 25, 50, "ogolny");
         ogolny.setPensja(pensja.liczeniePensji(ogolny.getEtat()));
 
         pensja = new PensjaPielegniarka();
 
-        Pielegniarka pielegniarka = new Pielegniarka("Anna", "Kowalska", 74071966417L, 41, 40);
+        Pielegniarka pielegniarka = new Pielegniarka("Anna", "Kowalska", 82071966417L, 41, 40);
         pielegniarka.setPensja(pensja.liczeniePensji(pielegniarka.getEtat()));
 
-        Dorosly dorosly1 = new Dorosly("Jakub", "Mak", 93090549649L, 22);
+        Dorosly dorosly1 = new Dorosly("Jakub", "Mak", 51090549649L, 72);
         dorosly1.setKosztyLeczenia(koszty.liczenieKosztowLeczenia(dorosly1.getWiek()));
 
         koszty = new KosztyDziecko();
 
-        Dziecko dziecko1 = new Dziecko("Anna", "Górska", 68082226149L, 6);
+        Dziecko dziecko1 = new Dziecko("Anna", "Górska", 17282226149L, 6);
         dziecko1.setKosztyLeczenia(koszty.liczenieKosztowLeczenia(dziecko1.getWiek()));
 
         osoby.add(chirurg);
